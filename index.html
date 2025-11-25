@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">Personal Finance</p>
+          <h1>Expense Tracker</h1>
+          <p class="lede">
+            Track daily spending by category, visualize weekly and monthly
+            trends, and stay on top of your budget.
+          </p>
+        </div>
+        <div class="totals-grid">
+          <div class="total-card">
+            <p>Total This Week</p>
+            <strong id="weekly-total">₹0.00</strong>
+          </div>
+          <div class="total-card">
+            <p>Total This Month</p>
+            <strong id="monthly-total">₹0.00</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="grid">
+        <section class="card form-card">
+          <h2>Add Expense</h2>
+          <form id="expense-form">
+            <label>
+              Date
+              <input type="date" name="date" required />
+            </label>
+
+            <label>
+              Category
+              <select name="category" required>
+                <option value="fuel">Fuel</option>
+                <option value="food">Food</option>
+                <option value="travel">Travel</option>
+                <option value="shopping">Shopping</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+
+            <label>
+              Amount
+              <input
+                type="number"
+                name="amount"
+                min="0"
+                step="0.01"
+                required
+                placeholder="0.00"
+              />
+            </label>
+
+            <label>
+              Notes
+              <input
+                type="text"
+                name="notes"
+                maxlength="80"
+                placeholder="Optional description"
+              />
+            </label>
+
+            <button type="submit">Save Expense</button>
+            <p class="form-hint" id="form-feedback"></p>
+          </form>
+        </section>
+
+        <section class="card analytics-card">
+          <div class="analytics-header">
+            <h2>Analytics</h2>
+            <div class="chip-group" id="filter-chip-group">
+              <button data-filter="all" class="chip active">All</button>
+              <button data-filter="fuel" class="chip">Fuel</button>
+              <button data-filter="food" class="chip">Food</button>
+              <button data-filter="travel" class="chip">Travel</button>
+              <button data-filter="shopping" class="chip">Shopping</button>
+              <button data-filter="other" class="chip">Other</button>
+            </div>
+          </div>
+
+          <div class="charts-grid">
+            <article>
+              <p class="chart-title">Week Wise Spending</p>
+              <canvas id="weekly-chart" height="220"></canvas>
+            </article>
+            <article>
+              <p class="chart-title">This Month by Category</p>
+              <canvas id="monthly-chart" height="220"></canvas>
+            </article>
+          </div>
+        </section>
+
+        <section class="card table-card">
+          <div class="table-header">
+            <div>
+              <h2>All Expenses</h2>
+              <p id="table-summary">0 expenses recorded</p>
+            </div>
+            <div class="table-controls">
+              <label>
+                Date Range
+                <input type="month" id="month-filter" />
+              </label>
+              <button id="reset-data" type="button" class="ghost-button">
+                Reset Data
+              </button>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Category</th>
+                  <th>Notes</th>
+                  <th class="amount-col">Amount</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="expense-table-body">
+                <tr>
+                  <td colspan="5" class="empty-state">
+                    No expenses yet. Add your first entry above.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
+
