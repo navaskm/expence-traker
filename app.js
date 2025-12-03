@@ -98,13 +98,7 @@ function saveExpenses(data) {
 
 function seedDemoExpenses() {
   const today = new Date();
-  const sample = [
-    { daysAgo: 1, category: 'food', amount: 12.5, notes: 'Lunch' },
-    { daysAgo: 2, category: 'fuel', amount: 40, notes: 'Gas refill' },
-    { daysAgo: 4, category: 'travel', amount: 18, notes: 'Metro card' },
-    { daysAgo: 6, category: 'shopping', amount: 55, notes: 'Groceries' },
-    { daysAgo: 8, category: 'other', amount: 20, notes: 'Gym' },
-  ];
+  const sample = [];
   return sample.map((item) => ({
     id: generateId(),
     date: formatDate(subtractDays(today, item.daysAgo)),
